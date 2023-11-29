@@ -28,8 +28,11 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: "3.10"
+      #    IF WINDOWS THEN RUN ON POWERSHELL
     - name: Install dependencies
       run: |
+        if runner.os == 'Windows':
+          shell: powershell
         python -m pip install --upgrade pip
         pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
